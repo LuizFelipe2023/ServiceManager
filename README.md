@@ -1,15 +1,15 @@
 # 🧰 Sistema de Gestão de Ordens de Serviço
 
-Sistema web desenvolvido com [Laravel](https://laravel.com/) e [FilamentPHP](https://filamentphp.com/) para gerenciar clientes, técnicos, ordens de serviço e usuários, com exportação em PDF e Excel.
+Sistema web desenvolvido com [Laravel](https://laravel.com/) e [FilamentPHP](https://filamentphp.com/) para **gerenciar clientes, técnicos, ordens de serviço e usuários**, com suporte a **exportação de dados em PDF e Excel** e **visualização de gráficos interativos com Chart.js**.
 
 ## 📌 Funcionalidades
 
 - 👥 Cadastro e gerenciamento de **clientes**, **técnicos** e **usuários**
-- 📝 Criação e acompanhamento de **ordens de serviço**
-- 🔐 Controle de acesso por **perfis de usuário** (admin, gerente, etc.)
-- 📄 Exportação de dados em **PDF** e **Excel**
-- 📊 Interface administrativa moderna com **FilamentPHP**
-- 🔎 Filtros, buscas e paginação automáticas
+- 📝 Criação, edição e acompanhamento de **ordens de serviço**
+- 🔐 Controle de acesso baseado em **perfis de usuário** (admin, gerente, etc.)
+- 📄 **Exportação de relatórios** em **PDF** e **Excel**
+- 📊 **Gráficos dinâmicos** com **Chart.js** para visualização de dados (ordens por status, técnicos mais ativos, etc.)
+- 🧭 Painel administrativo com filtros, busca e paginação automática via FilamentPHP
 
 ## 💻 Tecnologias Utilizadas
 
@@ -18,9 +18,10 @@ Sistema web desenvolvido com [Laravel](https://laravel.com/) e [FilamentPHP](htt
 - FilamentPHP
 - Livewire
 - TailwindCSS
-- Spatie Laravel-Permission (se utilizado para controle de roles)
+- Chart.js
 - Laravel Excel (Maatwebsite)
 - DomPDF
+- Spatie Laravel-Permission (se aplicável)
 
 ## 🚀 Como executar o projeto
 
@@ -29,7 +30,7 @@ Sistema web desenvolvido com [Laravel](https://laravel.com/) e [FilamentPHP](htt
 git clone https://github.com/seu-usuario/seu-repositorio.git
 cd seu-repositorio
 
-# Instale as dependências
+# Instale as dependências do PHP e Node
 composer install
 npm install && npm run build
 
@@ -37,8 +38,8 @@ npm install && npm run build
 cp .env.example .env
 php artisan key:generate
 
-# Configure o banco de dados no .env e rode as migrations
+# Configure o banco e rode as migrations
 php artisan migrate --seed
 
-# Rode o servidor local
+# Inicie o servidor local
 php artisan serve
