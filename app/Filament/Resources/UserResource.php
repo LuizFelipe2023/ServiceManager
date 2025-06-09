@@ -10,6 +10,8 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Forms\Components\Card;
+use Filament\Forms\Components\Section;
 
 
 class UserResource extends Resource
@@ -37,34 +39,38 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
+                Card::make([
+                    Forms\Components\TextInput::make('name')
+                        ->required()
+                        ->maxLength(255),
 
-                Forms\Components\TextInput::make('email')
-                    ->email()
-                    ->required()
-                    ->maxLength(255),
+                    Forms\Components\TextInput::make('email')
+                        ->email()
+                        ->required()
+                        ->maxLength(255),
 
-                Forms\Components\DateTimePicker::make('email_verified_at'),
+                    Forms\Components\DateTimePicker::make('email_verified_at'),
 
-                Forms\Components\TextInput::make('password')
-                    ->password()
-                    ->required(fn($context) => $context === 'create') // obrigatório só na criação
-                    ->maxLength(255)
-                    ->dehydrateStateUsing(fn($state) => $state ? bcrypt($state) : null) // encripta a senha se preenchida
-                    ->dehydrated(fn($state) => filled($state)),
+                    Forms\Components\TextInput::make('password')
+                        ->password()
+                        ->required(fn($context) => $context === 'create')
+                        ->maxLength(255)
+                        ->dehydrateStateUsing(fn($state) => $state ? bcrypt($state) : null)
+                        ->dehydrated(fn($state) => filled($state)),
 
-                Forms\Components\Select::make('role')
-                    ->label('Perfil')
-                    ->options([
-                        'admin' => 'Admin',
-                        'manager' => 'Manager',
-                        'user' => 'User',
-                    ])
-                    ->required()
-                    ->native(false)
-                    ->searchable(),
+                    Forms\Components\Select::make('role')
+                        ->label('Role')
+                        ->options([
+                            'admin' => 'Admin',
+                            'manager' => 'Manager',
+                            'user' => 'User',
+                        ])
+                        ->required()
+                        ->native(false)
+                        ->searchable(),
+                ])
+                    ->columns(2)
+                    ->columnSpan('full'),
             ]);
     }
 
